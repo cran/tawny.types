@@ -1,6 +1,7 @@
 \name{tawny.types-package}
 \alias{tawny.types-package}
 \alias{tawny.types}
+\alias{tawny.options}
 \docType{package}
 \title{Common types for tawny}
 \description{
@@ -10,9 +11,9 @@ Base types used throughout tawny
 \tabular{ll}{
 Package: \tab tawny.types\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2011-10-22\cr
-License: \tab What license is it under?\cr
+Version: \tab 1.1.0\cr
+Date: \tab 2013-02-02\cr
+License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
 Create portfolio objects from these types
@@ -20,14 +21,13 @@ Create portfolio objects from these types
 \author{
 Brian Lee Yung Rowe
 
-Maintainer: Brian Lee Yung Rowe <r@nurometic.com>
+Maintainer: Brian Lee Yung Rowe <r@zatonovo.com>
 }
 \keyword{ package }
 \seealso{ \code{\link[tawny]{tawny-package}} }
 \examples{
-# This is run automatically in the package
-tawny.types:::.init()
-
-p <- create(TawnyPortfolio, c('AAPL','GOOG','IBM'), 150,200)
-m <- create(BenchmarkPortfolio, '^GSPC', 150,200)
+\dontrun{
+p <- TawnyPortfolio(c('AAPL','GOOG','IBM'), 150,200)
+m <- BenchmarkPortfolio('^GSPC', 150,200)
+}
 }
