@@ -11,9 +11,9 @@ Base types used throughout tawny
 \tabular{ll}{
 Package: \tab tawny.types\cr
 Type: \tab Package\cr
-Version: \tab 1.1.0\cr
-Date: \tab 2013-02-02\cr
-License: \tab GPL-3\cr
+Version: \tab 1.1.1\cr
+Date: \tab 2014-01-23\cr
+License: \tab What license is it under?\cr
 LazyLoad: \tab yes\cr
 }
 Create portfolio objects from these types
