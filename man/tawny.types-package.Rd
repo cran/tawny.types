@@ -2,6 +2,8 @@
 \alias{tawny.types-package}
 \alias{tawny.types}
 \alias{tawny.options}
+\alias{Covariance}
+\alias{Correlation}
 \docType{package}
 \title{Common types for tawny}
 \description{
@@ -11,8 +13,8 @@ Base types used throughout tawny
 \tabular{ll}{
 Package: \tab tawny.types\cr
 Type: \tab Package\cr
-Version: \tab 1.1.1\cr
-Date: \tab 2014-01-23\cr
+Version: \tab 1.1.3\cr
+Date: \tab 2014-05-06\cr
 License: \tab What license is it under?\cr
 LazyLoad: \tab yes\cr
 }

@@ -1,11 +1,11 @@
-ea7c671252f7aada28c17f313d60fedd *DESCRIPTION
-286887c392580a9aa76506f2a0a85bc6 *NAMESPACE
+cf725cbd36c07704c9a705cf165a148c *DESCRIPTION
+625b7391fd79723c24f9c92c89283ac6 *NAMESPACE
 2cab1d3a82e05b8af4c402c76bdce65f *R/init.R
-2bb7551dca12d5156aa5eb3bb4f89c38 *R/types.R
-cfdbf2de968a4c40452a3e48d1e6c706 *inst/unitTests/Makefile
+27e68104629f854bd8cbb846a5367fc9 *R/matrix.R
+6553730cd32544f0614e428faad867af *R/portfolio.R
 b540d502e91e9e63a5691940513e76b0 *inst/unitTests/runit.types.R
 101c32c383c2d90f0cd3c5f8587831d7 *man/AssetReturns.Rd
 0fe368b444df859e83b0037772b85981 *man/EquityIndex.Rd
 ce4cc9945e837c780a6a85e072642001 *man/TawnyPortfolio.Rd
-1073eeb1190ae068715fac83f4d56e48 *man/tawny.types-package.Rd
+258c99c2b649bd91dfad49dd7b98a0b6 *man/tawny.types-package.Rd
 95bf9ee21f7a45d318a4cddc974f33ae *tests/doRUnit.R

@@ -1,42 +1,30 @@
 ##---------------------------- TAWNY_PORTFOLIO -----------------------------##
 # Example
-# p <- create(TawnyPortfolio, c('FCX','AAPL','JPM','AMZN','VMW','TLT','GLD','FXI','ILF','XOM'))
+# p <- TawnyPortfolio(c('FCX','AAPL','JPM','AMZN','VMW','TLT','GLD','FXI','ILF','XOM'))
 TawnyPortfolio(symbols, window, obs) %::% character : numeric : numeric : list
 TawnyPortfolio(symbols, window=90, obs=150) %as%
 {
-  returns = AssetReturns(symbols, obs)
+  returns <- AssetReturns(symbols, obs=obs)
   TawnyPortfolio(returns, window)
 }
 
-TawnyPortfolio(returns, window) %::% AssetReturns : numeric : list
-TawnyPortfolio(returns, window=90) %as%
-{
-  periods = anylength(returns) - window + 1
-  list(symbols=anynames(returns), window=window, obs=anylength(returns),
-       periods=periods, returns=returns)
-}
 
-TawnyPortfolio(returns, window, extra) %::% AssetReturns : numeric : list : list
-TawnyPortfolio(returns, window, extra) %as%
+TawnyPortfolio(returns, window, extra) %::% AssetReturns : numeric : . : list
+TawnyPortfolio(returns, window=90, extra=NULL) %as%
 {
-  periods = anylength(returns) - window + 1
+  periods <- anylength(returns) - window + 1
   c(list(symbols=anynames(returns), window=window, obs=anylength(returns),
        periods=periods, returns=returns), extra)
 }
 
-TawnyPortfolio(returns, window) %::% zoo : numeric : list
-TawnyPortfolio(returns, window) %as%
+
+TawnyPortfolio(returns, window, extra) %::% zoo : numeric : . : list
+TawnyPortfolio(returns, window, extra=NULL) %as%
 {
-  class(returns) <- c("AssetReturns", "returns", class(returns))
-  TawnyPortfolio(returns, window)
+  TawnyPortfolio(AssetReturns(returns), window, extra)
 }
 
-TawnyPortfolio(returns, window, extra) %::% zoo : numeric : list : list
-TawnyPortfolio(returns, window, extra) %as%
-{
-  class(returns) <- c("AssetReturns", "returns", class(returns))
-  TawnyPortfolio(returns, window, extra)
-}
+
 
 rollapply.TawnyPortfolio <- function(x, fun, ...)
 {
@@ -68,7 +56,7 @@ end.TawnyPortfolio <- function(x, ...)
 
 ##------------------------- BENCHMARK PORTFOLIO ----------------------------##
 # Convenience function for creating a benchmark portfolio
-# m <- create(BenchmarkPortfolio, '^GSPC', 150, 200)
+# m <- BenchmarkPortfolio('^GSPC', 150, 200)
 BenchmarkPortfolio(market,window,obs, end=Sys.Date(),...) %as%
 {
   if (is.character(market))
@@ -94,7 +82,7 @@ BenchmarkPortfolio(market,window,obs, end=Sys.Date(),...) %as%
 
 
 # Calculate portfolio returns based
-# returns <- create(PortfolioReturns, p, weights)
+# returns <- PortfolioReturns(p, weights)
 # chart.PerformanceSummary(returns)
 PortfolioReturns(p, weights) %::% TawnyPortfolio : numeric : a
 PortfolioReturns(p, weights) %as%
@@ -149,7 +137,10 @@ PortfolioReturns(h, weights) %as%
 #  Fix names
 #  Add method to add other portfolio elements (such as synthetic securities)
 # Example:
-#  h <- create(AssetReturns, c('GOOG','AAPL','BAC','C','F','T'), 150)
+#  h <- AssetReturns(c('GOOG','AAPL','BAC','C','F','T'), 150)
+AssetReturns(returns) %::% zoo : zoo
+AssetReturns(returns) %as% returns
+
 AssetReturns(symbols, obs=NULL, start=NULL, end=Sys.Date(),
   fun=function(x) Delt(Cl(x)), reload=FALSE, na.value=NA, ...) %as%
 {
@@ -212,17 +203,19 @@ AssetReturns(symbols, obs=NULL, start=NULL, end=Sys.Date(),
   out
 }
 
+
+
 # Generate the composition for an equity index
 # Example
 # Get SP500 components
-#   sp500.idx <- create(EquityIndex)
+#   sp500.idx <- EquityIndex()
 # Get DOW components
-#   dow.idx <- create(EquityIndex,'^DJI')
+#   dow.idx <- EquityIndex('^DJI')
 # Get FTSE components
-#   ftse.idx <- create(EquityIndex,'^FTSE')
+#   ftse.idx <- EquityIndex('^FTSE')
 # Get HSI components
-#   hsi.idx <- create(EquityIndex,'^HSI')
-# h <- create(AssetReturns, create(EquityIndex,'^DJI'), obs=100)
+#   hsi.idx <- EquityIndex('^HSI')
+# h <- AssetReturns(EquityIndex('^DJI'), obs=100)
 EquityIndex(ticker='^GSPC', hint=NA, src='yahoo') %as%
 {
   if (is.na(hint))
